@@ -1,9 +1,11 @@
-import sys, json, joblib, warnings, xgboost
-
+import sys, json, joblib, warnings, os
 warnings.filterwarnings("ignore")
 
-model = joblib.load("model.pkl")
-data = json.loads(sys.argv[1])
+# load model from same folder as this file
+base = os.path.dirname(__file__)
+model = joblib.load(os.path.join(base, "model.pkl"))
 
-pred = model.predict([data])
-print(float(pred[0]))
+features = json.loads(sys.argv[1])
+
+prediction = model.predict([features])[0]
+print(prediction)
