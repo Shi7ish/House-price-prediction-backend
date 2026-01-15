@@ -9,7 +9,7 @@ app.use(cors());
 app.post("/predict", (req, res) => {
     const features = req.body.features;
 
-    const pythonProcess = spawn("py", ["predict.py", JSON.stringify(features)]);
+    const pythonProcess = spawn("python3", ["predict.py", JSON.stringify(features)]);
 
     let result = "";
 
